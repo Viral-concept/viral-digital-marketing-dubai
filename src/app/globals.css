@@ -1,0 +1,399 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens
+   Colour: a deep ink foundation, warm paper surfaces and one accent per
+   capability family (growth = ember, build = sky, intelligence = lagoon).
+   ------------------------------------------------------------------ */
+@theme {
+  --color-ink: #0c111c;
+  --color-ink-2: #131a28;
+  --color-ink-3: #1c2436;
+  --color-line-dark: #263049;
+  --color-mist: #a7b0c3;
+  --color-mist-2: #7d879d;
+
+  --color-paper: #f4efe7;
+  --color-paper-2: #ebe4d8;
+  --color-sand: #d8cdbc;
+  --color-stone: #5f5a51;
+  --color-line-light: #d6cdbf;
+
+  --color-ember: #ff6a3d;
+  --color-ember-deep: #a3361a;
+  --color-sky: #8fb2ff;
+  --color-sky-deep: #3457b8;
+  --color-lagoon: #5fe0c6;
+  --color-lagoon-deep: #0f6b5c;
+
+  --font-sans: var(--font-sans-latin), var(--font-sans-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif-latin), var(--font-sans-arabic), ui-serif, Georgia, serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --breakpoint-xs: 26rem;
+}
+
+:root {
+  /* Motion system */
+  --dur-micro: 180ms;
+  --dur-ui: 320ms;
+  --dur-reveal: 900ms;
+  --dur-hero: 1200ms;
+  --dist-reveal: 28px;
+  --dist-panel: 72px;
+  --stagger: 70ms;
+  /* Logical direction multiplier: flips horizontal motion for RTL. */
+  --dir: 1;
+
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --header-h: 4.5rem;
+
+  color-scheme: dark;
+}
+
+[dir="rtl"] {
+  --dir: -1;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+[lang="ar"] body {
+  font-feature-settings: normal;
+  letter-spacing: 0 !important;
+}
+
+/* Arabic never gets tracking adjustments: they break joining. */
+[lang="ar"] [class*="tracking-"] {
+  letter-spacing: 0 !important;
+}
+
+::selection {
+  background: var(--color-ember);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.surface-paper :focus-visible {
+  outline-color: var(--color-ember-deep);
+}
+
+/* ------------------------------------------------------------------
+   Layout primitives
+   ------------------------------------------------------------------ */
+@utility container-x {
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility surface-paper {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  color-scheme: light;
+}
+
+@utility eyebrow {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@utility display {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+@utility serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+[lang="ar"] .display {
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+[lang="ar"] .serif-accent {
+  font-style: normal;
+  font-weight: 600;
+}
+
+[lang="ar"] .eyebrow {
+  font-size: 0.85rem;
+  text-transform: none;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Subtle film grain to give flat surfaces depth (static, no animation). */
+.grain {
+  position: relative;
+  isolation: isolate;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------------------
+   Motion: reveal system
+   Content is visible by default. Only when JS has run (html.js) do
+   elements start hidden and animate in, so nothing is lost for crawlers
+   or if scripts fail.
+   ------------------------------------------------------------------ */
+.js [data-reveal] {
+  opacity: 0;
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-expo),
+    transform var(--dur-reveal) var(--ease-out-expo),
+    clip-path calc(var(--dur-reveal) * 1.2) var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * var(--stagger));
+  will-change: opacity, transform;
+}
+.js [data-reveal="up"] {
+  transform: translate3d(0, var(--dist-reveal), 0);
+}
+.js [data-reveal="start"] {
+  transform: translate3d(calc(var(--dist-panel) * -1 * var(--dir)), 0, 0);
+}
+.js [data-reveal="end"] {
+  transform: translate3d(calc(var(--dist-panel) * var(--dir)), 0, 0);
+}
+.js [data-reveal="scale"] {
+  transform: scale(0.96);
+}
+.js [data-reveal="mask"] {
+  opacity: 1;
+  clip-path: inset(0 0 100% 0);
+}
+/* A rule that draws itself along the reading direction. */
+.js [data-reveal="line"] {
+  opacity: 1;
+  transform: scaleX(0);
+  transform-origin: var(--line-origin, left);
+  transition-duration: calc(var(--dur-reveal) * 1.6);
+}
+[dir="rtl"] [data-reveal="line"] {
+  --line-origin: right;
+}
+.js [data-reveal][data-inview="true"] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* Word-by-word headline reveal */
+.js .word-reveal .w {
+  display: inline-block;
+  transform: translate3d(0, 0.9em, 0);
+  opacity: 0;
+  transition:
+    transform var(--dur-hero) var(--ease-out-expo),
+    opacity calc(var(--dur-hero) * 0.6) var(--ease-out-expo);
+  transition-delay: calc(var(--i, 0) * var(--stagger) + var(--delay, 0ms));
+}
+.word-reveal .mask,
+.hero-words .mask {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.js .word-reveal[data-inview="true"] .w {
+  transform: none;
+  opacity: 1;
+}
+
+/* Hero headline: plays on first paint (no JS needed) and animates transform only,
+   so the text is painted immediately and never delays LCP. */
+@keyframes word-rise {
+  from {
+    transform: translate3d(0, 0.95em, 0);
+  }
+}
+@keyframes word-up {
+  from {
+    transform: translate3d(0, 0.9em, 0);
+    opacity: 0;
+  }
+}
+.hero-in {
+  animation: word-up var(--dur-hero) var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * var(--stagger) + 80ms);
+}
+.hero-words .w {
+  display: inline-block;
+  animation: word-rise var(--dur-hero) var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * var(--stagger) + 80ms);
+}
+
+/* Animated underline for links */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  transition: background-size var(--dur-ui) var(--ease-out-expo);
+}
+[dir="rtl"] .link-underline {
+  background-position: 0% 100%;
+}
+.link-underline:hover,
+.link-underline:focus-visible,
+.link-underline[aria-current="page"] {
+  background-size: 100% 1px;
+  background-position: 0% 100%;
+}
+[dir="rtl"] .link-underline:hover,
+[dir="rtl"] .link-underline:focus-visible,
+[dir="rtl"] .link-underline[aria-current="page"] {
+  background-position: 100% 100%;
+}
+
+/* Directional icons flip in RTL */
+[dir="rtl"] .flip-rtl {
+  transform: scaleX(-1);
+}
+
+/* Horizontal scroller */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hero orbit motion: single slow rotation, paused when off-screen via data attribute. */
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translate3d(calc(-50% * var(--dir)), 0, 0);
+  }
+}
+
+.animate-orbit {
+  animation: orbit-spin 90s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.animate-orbit-rev {
+  animation: orbit-spin 140s linear infinite reverse;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.animate-dash {
+  animation: dash-flow 6s linear infinite;
+}
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+}
+[data-paused="true"] .animate-orbit,
+[data-paused="true"] .animate-orbit-rev,
+[data-paused="true"] .animate-dash,
+[data-paused="true"] .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion: keep fades, remove travel and continuous motion.
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dist-reveal: 0px;
+    --dist-panel: 0px;
+    --dur-reveal: 400ms;
+    --dur-hero: 400ms;
+    --stagger: 0ms;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+  .js .word-reveal .w {
+    transform: none;
+  }
+  .animate-orbit,
+  .animate-orbit-rev,
+  .animate-dash,
+  .animate-marquee {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .js [data-reveal] {
+    transition-duration: 400ms !important;
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
