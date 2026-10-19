@@ -38,7 +38,7 @@ export default async function Image() {
         </svg>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: 700 }}>
           <div style={{ display: "flex", fontSize: 30, letterSpacing: -0.5 }}>
-            {site.brand.name.en} · {site.brand.descriptor.en}
+            {site.brand.name.en}
           </div>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 76, lineHeight: 1.02, letterSpacing: -2.5, fontWeight: 700 }}>
             <span>Marketing, software and AI,</span>

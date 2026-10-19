@@ -2,7 +2,7 @@
 
 A bilingual marketing site for a Dubai digital growth studio that combines growth marketing, digital product development and AI automation. Built with Next.js 16 (App Router), React 19, TypeScript and Tailwind CSS 4.
 
-> **Working name.** "Qanat / قنات" is a placeholder brand. Replace it in `src/config/site.ts` before launch. The footer shows a "placeholder" notice while `brand.isPlaceholder` is `true`.
+> **Brand:** Viral Digital Labs / فايرال ديجيتال لابز. Name, contact email and WhatsApp number live in `src/config/site.ts` (environment variables override them). Logo files are in `public/brand/` (`logo.svg`, `logo-white.svg`, `logo-mark.svg`); the site renders the same mark inline from `src/components/brand-mark.tsx`.
 
 ## Quick start
 
@@ -65,7 +65,7 @@ docs/                  Research, strategy and launch checklist
 Business details live in `src/config/site.ts`; most can be set through environment variables (see `.env.example`). Anything left empty is **hidden**, never shown as a fake value:
 
 - No email/phone → the contact block says details will be published at launch.
-- No WhatsApp number → no WhatsApp button.
+- WhatsApp: every WhatsApp button (floating button, hero, contact block, footer) opens a chat with `contact.whatsapp` and a prefilled greeting in the visitor's language.
 - No `NEXT_PUBLIC_SITE_URL` → every page is `noindex` and `robots.txt` disallows crawling.
 - No analytics ID → no tracking script loads.
 - `contact.address` stays `undefined` until a verified, licensed address is confirmed; it then also appears in structured data.
@@ -87,7 +87,7 @@ The rate limiter is in memory. On serverless or multi-instance hosting, swap it 
 
 See `docs/STRATEGY.md` for the creative direction. In code:
 
-- **Tokens:** `src/app/globals.css` (`@theme`): ink/paper surfaces and one accent per capability family (growth = ember, build = sky, intelligence = lagoon). `src/lib/families.ts` maps families to colours.
+- **Tokens:** `src/app/globals.css` (`@theme`). Light theme: `ink` is the page surface (white) and `paper` the foreground (deep navy), so `surface-paper` sections are the dark bands. One accent per capability family: growth = violet (`ember`), build = pink (`sky`), intelligence = teal (`lagoon`); each `-deep` variant is the light tint used on dark bands. `src/lib/families.ts` maps families to colours.
 - **Type:** Inter Tight (Latin), Instrument Serif italic for accent words, IBM Plex Sans Arabic for Arabic. Arabic never receives letter-spacing.
 - **Motion:** CSS handles reveals (`data-reveal="up|start|end|scale|mask"` and `WordReveal`), driven by one shared IntersectionObserver (`components/reveal-observer.tsx`). Motion for React is used only where it adds understanding: the scroll-linked positioning story, industry explorer transitions, the journey demo and the process progress line. `start`/`end` directions flip automatically in RTL through the `--dir` variable.
 - **Reduced motion:** travel distances drop to zero, continuous animations stop, and scroll-linked sections render in their final state.

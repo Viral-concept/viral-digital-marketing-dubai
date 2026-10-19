@@ -2,10 +2,11 @@
 
 ## A. Information the business must supply
 
-- [ ] Final brand name (English and Arabic) and logo files → `src/config/site.ts`, set `brand.isPlaceholder: false`
+- [x] Brand name (Viral Digital Labs / فايرال ديجيتال لابز) and logo (`public/brand/`)
+- [ ] Check the brand name for trade-name, trademark and domain availability before printing anything
 - [ ] Production domain → `NEXT_PUBLIC_SITE_URL` (removes noindex and enables the sitemap in robots.txt)
-- [ ] Verified business email and phone → `NEXT_PUBLIC_CONTACT_EMAIL`, `NEXT_PUBLIC_CONTACT_PHONE`
-- [ ] Verified WhatsApp Business number → `NEXT_PUBLIC_WHATSAPP_NUMBER`
+- [x] Contact email and phone set in `src/config/site.ts` (consider a domain email such as hello@<domain> once the domain is live)
+- [x] WhatsApp number +971 54 587 2158 wired to every WhatsApp button
 - [ ] Licensed company name, trade licence number and registered address → `src/content/legal.ts` and `site.contact.address`
 - [ ] Social profile URLs
 - [ ] Enquiry delivery: CRM webhook or Resend credentials (see README)

@@ -1,30 +1,35 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Design tokens
-   Colour: a deep ink foundation, warm paper surfaces and one accent per
-   capability family (growth = ember, build = sky, intelligence = lagoon).
+   Design tokens (Viral Digital Labs, light theme)
+   Naming note: `ink` is the page surface and `paper` is the foreground,
+   so `surface-paper` sections render as the dark "spotlight" bands.
+   Accent families: growth = violet (ember), build = pink (sky),
+   intelligence = teal (lagoon). The plain accent is tuned for light
+   surfaces; the `-deep` variant is its light tint for dark bands.
    ------------------------------------------------------------------ */
 @theme {
-  --color-ink: #0c111c;
-  --color-ink-2: #131a28;
-  --color-ink-3: #1c2436;
-  --color-line-dark: #263049;
-  --color-mist: #a7b0c3;
-  --color-mist-2: #7d879d;
+  --color-ink: #ffffff;
+  --color-ink-2: #f6f4fd;
+  --color-ink-3: #ece8fb;
+  --color-line-dark: #e6e2f3;
+  --color-mist: #555a6e;
+  --color-mist-2: #686c80;
 
-  --color-paper: #f4efe7;
-  --color-paper-2: #ebe4d8;
-  --color-sand: #d8cdbc;
-  --color-stone: #5f5a51;
-  --color-line-light: #d6cdbf;
+  --color-paper: #120e2b;
+  --color-paper-2: #221c47;
+  --color-sand: #3a3366;
+  --color-stone: #bdb8d6;
+  --color-line-light: #2e2858;
 
-  --color-ember: #ff6a3d;
-  --color-ember-deep: #a3361a;
-  --color-sky: #8fb2ff;
-  --color-sky-deep: #3457b8;
-  --color-lagoon: #5fe0c6;
-  --color-lagoon-deep: #0f6b5c;
+  --color-ember: #5b2eff;
+  --color-ember-deep: #b9a6ff;
+  --color-sky: #d1146b;
+  --color-sky-deep: #ff8fc1;
+  --color-lagoon: #0a7c70;
+  --color-lagoon-deep: #5fe0c6;
+
+  --color-whatsapp: #25d366;
 
   --font-sans: var(--font-sans-latin), var(--font-sans-arabic), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif-latin), var(--font-sans-arabic), ui-serif, Georgia, serif;
@@ -50,7 +55,7 @@
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --header-h: 4.5rem;
 
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 [dir="rtl"] {
@@ -261,6 +266,43 @@ body {
   display: inline-block;
   animation: word-rise var(--dur-hero) var(--ease-out-expo) both;
   animation-delay: calc(var(--i, 0) * var(--stagger) + 80ms);
+}
+
+/* Brand gradient text for accent words. */
+.text-gradient .w,
+.text-gradient {
+  background: linear-gradient(100deg, #4f2bff 0%, #b51fe0 50%, #ff3d7f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-gradient .w {
+  padding-bottom: 0.06em;
+}
+
+/* Gentle floating for hero cards and drifting glows (stopped by reduced motion). */
+@keyframes float {
+  50% {
+    translate: 0 -10px;
+  }
+}
+@keyframes drift {
+  50% {
+    translate: 4% 6%;
+    scale: 1.08;
+  }
+}
+.float-slow {
+  animation: float 9s ease-in-out infinite;
+}
+.float-mid {
+  animation: float 7s ease-in-out -2s infinite;
+}
+.float-fast {
+  animation: float 6s ease-in-out -4s infinite;
+}
+.hero-glow {
+  animation: drift 18s ease-in-out infinite;
 }
 
 /* Animated underline for links */

@@ -48,6 +48,7 @@ const en = {
     language: "Language",
     switchTo: "عربي",
     switchToLabel: "View this page in Arabic",
+    whatsappMessage: "Hi Viral Digital Labs, I would like to discuss a project.",
     whatsapp: "Chat on WhatsApp",
     families: {
       growth: "Growth",
@@ -80,22 +81,39 @@ const en = {
   },
 
   hero: {
-    eyebrow: "Digital growth studio · Dubai",
-    titleLead: "Marketing, software and AI,",
-    titleAccent: "engineered as one",
-    titleTail: "growth system.",
-    body: "We plan the campaigns, build the websites and apps they land on, and automate the follow-up with AI, so the attention you pay for becomes conversations your team can close.",
+    eyebrow: "Digital marketing, websites and AI · Dubai",
+    titleLead: "Marketing, websites and AI that make your brand",
+    titleAccent: "impossible to scroll past.",
+    body: "Viral Digital Labs plans the campaigns, builds the websites and apps they land on, and answers every lead on WhatsApp with AI, so attention turns into customers.",
     primaryCta: "Start a project",
-    secondaryCta: "Explore services",
-    visualLabel:
-      "Diagram of three connected rings: growth marketing on the outside, digital products in the middle and AI automation at the core.",
-    rings: {
-      growth: "Growth",
-      build: "Build",
-      intelligence: "AI",
+    whatsappCta: "Chat on WhatsApp",
+    chips: ["Social media campaigns", "Websites that convert", "AI replies on WhatsApp"] as [string, string, string],
+    note: "English and Arabic · Based in Dubai · Marketing, development and AI under one roof",
+    visual: {
+      label: "Illustration of a social campaign, a new website and an AI WhatsApp conversation working together.",
+      campaign: "New campaign",
+      live: "Live",
+      site: "Your new website",
+      siteCta: "Book a visit",
+      chatTitle: "WhatsApp assistant",
+      chatUser: "Hi, do you have a slot this week?",
+      chatBot: "Yes! There are three open slots. Shall I book one for you?",
     },
-    chips: ["Arabic search campaign", "Bilingual landing page", "WhatsApp AI follow-up"] as [string, string, string],
-    note: "English and Arabic · UAE-focused · Marketing, development and AI under one roof",
+  },
+
+  servicesSection: {
+    eyebrow: "Services",
+    title: "Ten services. Three capabilities. One brief.",
+    body: "Start with the service you need today. Because everything is designed to connect, it is ready for the next step when you are.",
+  },
+
+  industriesSection: {
+    eyebrow: "Industries",
+    title: "Built around how your customers actually buy.",
+    body: "A property investor, a family booking an AC repair and a patient choosing a clinic make very different decisions. We design for the decision, not a template.",
+    challengesLabel: "Typical challenges",
+    servicesLabel: "Where we focus",
+    explore: "Explore the industry",
   },
 
   positioning: {
@@ -123,21 +141,6 @@ const en = {
       },
     ],
     closing: "One team, one plan, one set of numbers everyone can see.",
-  },
-
-  servicesSection: {
-    eyebrow: "Services",
-    title: "Ten services. Three capabilities. One brief.",
-    body: "Start with the service you need today. Because everything is designed to connect, it is ready for the next step when you are.",
-  },
-
-  industriesSection: {
-    eyebrow: "Industries",
-    title: "Built around how your customers actually buy.",
-    body: "A property investor, a family booking an AC repair and a patient choosing a clinic make very different decisions. We design for the decision, not a template.",
-    challengesLabel: "Typical challenges",
-    servicesLabel: "Where we focus",
-    explore: "Explore the industry",
   },
 
   demo: {

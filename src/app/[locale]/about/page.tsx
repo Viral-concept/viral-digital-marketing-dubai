@@ -114,8 +114,8 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <WordReveal as="h2" id="promises-title" text={a.promisesTitle} className="display text-4xl sm:text-5xl" />
-            <Button href={href(locale, routes.approach)} variant="dark" className="mt-10">
-              {a.approachCta}
+            <Button href={href(locale, routes.contact)} variant="dark" className="mt-10">
+              {dict.common.startProject}
             </Button>
           </div>
           <ol className="lg:col-span-7">

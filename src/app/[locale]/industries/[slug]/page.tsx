@@ -36,7 +36,7 @@ export default async function IndustryPage({ params }: PageProps<"/[locale]/indu
   const dict = getDictionary(locale);
   const t = dict.pages.industry;
   const c = industry[locale];
-  const accent = `hsl(${industry.hue} 85% 68%)`;
+  const accent = `hsl(${industry.hue} 70% 36%)`;
   const number = industries.findIndex((i) => i.slug === slug) + 1;
 
   return (
@@ -211,13 +211,13 @@ export default async function IndustryPage({ params }: PageProps<"/[locale]/indu
 
       {/* Industry CTA */}
       <section aria-labelledby="ind-cta" className="container-x">
-        <div className="relative overflow-hidden rounded-[2rem] p-10 sm:p-14" style={{ background: `linear-gradient(120deg, hsl(${industry.hue} 70% 22%), #131a28 70%)` }}>
+        <div className="relative overflow-hidden rounded-[2rem] p-10 sm:p-14" style={{ background: "linear-gradient(120deg, #4f2bff, #b51fe0 60%, #ff3d7f)" }}>
           <div className="relative max-w-3xl">
-            <h2 id="ind-cta" className="display text-4xl sm:text-5xl">
+            <h2 id="ind-cta" className="display text-4xl text-white sm:text-5xl">
               {c.cta.title}
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-mist">{c.cta.body}</p>
-            <Link href="#enquire" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-paper px-6 font-semibold text-ink transition-colors hover:bg-ember">
+            <p className="mt-5 text-lg leading-relaxed text-white/85">{c.cta.body}</p>
+            <Link href="#enquire" className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 font-semibold text-[#120e2b] transition-colors hover:bg-[#120e2b] hover:text-white">
               {dict.common.startProject}
               <ArrowUpRight className="flip-rtl size-4" aria-hidden="true" />
             </Link>

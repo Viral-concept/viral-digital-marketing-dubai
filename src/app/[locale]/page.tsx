@@ -10,7 +10,7 @@ import { servicesBySlugs } from "@/content/services";
 import type { Family, IndustrySlug } from "@/content/types";
 import { Hero } from "@/components/home/hero";
 import { Positioning } from "@/components/home/positioning";
-import { ServicesIndex } from "@/components/home/services-index";
+import { ServicesGrid } from "@/components/home/services-grid";
 import { IndustryExplorer } from "@/components/home/industry-explorer";
 import { JourneyDemo } from "@/components/home/journey-demo";
 import { WorkGallery } from "@/components/home/work-gallery";
@@ -62,7 +62,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <JsonLd data={organizationLd(locale)} />
       <Hero locale={locale} dict={dict} />
       <Positioning dict={dict} isRtl={isRtl} />
-      <ServicesIndex locale={locale} dict={dict} />
+      <ServicesGrid locale={locale} dict={dict} />
 
       <section aria-labelledby="industries-title" className="surface-paper py-24 sm:py-32">
         <div className="container-x">
@@ -122,14 +122,14 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <HowItWorks locale={locale} dict={dict} />
       <TechSection dict={dict} />
 
-      <section aria-labelledby="faq-title" className="surface-paper py-24 sm:py-32">
+      <section aria-labelledby="faq-title" className="bg-ink-2 py-24 sm:py-32">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Eyebrow className="mb-6 text-stone">{dict.faq.eyebrow}</Eyebrow>
+            <Eyebrow className="mb-6 text-mist">{dict.faq.eyebrow}</Eyebrow>
             <WordReveal as="h2" id="faq-title" text={dict.faq.title} className="display text-4xl sm:text-5xl" />
           </div>
           <div className="lg:col-span-8">
-            <FaqList items={dict.faq.items} tone="light" />
+            <FaqList items={dict.faq.items} />
           </div>
         </div>
       </section>

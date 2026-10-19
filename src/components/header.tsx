@@ -112,6 +112,7 @@ export function Header({ locale, dict, nav }: { locale: Locale; dict: Dictionary
             {([
               ["work", routes.work],
               ["about", routes.about],
+              ["contact", routes.contact],
             ] as const).map(([key, path]) => (
               <li key={key} onMouseEnter={() => openWithIntent(null)}>
                 <Link
@@ -129,7 +130,9 @@ export function Header({ locale, dict, nav }: { locale: Locale; dict: Dictionary
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <Link
+          {/* A full page load, not a client navigation: the new language has its own <html lang/dir>
+              and head, which should come fresh from the server. */}
+          <a
             href={switchHref}
             hrefLang={otherLocale}
             lang={otherLocale}
@@ -142,7 +145,7 @@ export function Header({ locale, dict, nav }: { locale: Locale; dict: Dictionary
             }}
           >
             {dict.common.switchTo}
-          </Link>
+          </a>
           <Link
             href={href(locale, routes.contact)}
             className="group hidden min-h-11 items-center gap-2 rounded-full bg-paper px-5 text-[0.92rem] font-semibold text-ink transition-colors duration-300 hover:bg-ember sm:inline-flex"

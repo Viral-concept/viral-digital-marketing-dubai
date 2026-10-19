@@ -14,13 +14,13 @@
 const env = (value: string | undefined) => (value && value.trim().length > 0 ? value.trim() : undefined);
 
 export const site = {
-  /** PLACEHOLDER working name. Replace with the confirmed agency brand. */
   brand: {
-    name: { en: "Qanat", ar: "قنات" },
-    /** Short descriptor shown next to the wordmark. */
-    descriptor: { en: "Digital Growth Studio", ar: "استوديو النمو الرقمي" },
-    isPlaceholder: true,
-    /** Path to a logo file in /public. When undefined, the typographic wordmark is used. */
+    name: { en: "Viral Digital Labs", ar: "فايرال ديجيتال لابز" },
+    /** The wordmark sets the first word large and the rest as a descriptor. */
+    short: { en: "Viral", ar: "فايرال" },
+    descriptor: { en: "Digital Labs", ar: "ديجيتال لابز" },
+    isPlaceholder: false,
+    /** Path to a logo file in /public. When undefined, the built-in SVG mark and wordmark are used. */
     logo: undefined as string | undefined,
   },
 
@@ -28,11 +28,11 @@ export const site = {
   url: (env(process.env.NEXT_PUBLIC_SITE_URL) ?? "https://www.example.com").replace(/\/$/, ""),
 
   contact: {
-    email: env(process.env.NEXT_PUBLIC_CONTACT_EMAIL),
+    email: env(process.env.NEXT_PUBLIC_CONTACT_EMAIL) ?? "alfaizbadar21@gmail.com",
     /** International format, e.g. +9714XXXXXXX. */
-    phone: env(process.env.NEXT_PUBLIC_CONTACT_PHONE),
-    /** Digits only in international format, e.g. 9715XXXXXXXX. WhatsApp UI stays hidden until set. */
-    whatsapp: env(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER),
+    phone: env(process.env.NEXT_PUBLIC_CONTACT_PHONE) ?? "+971 54 587 2158",
+    /** Digits only in international format. Every WhatsApp button opens a chat with this number. */
+    whatsapp: env(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER) ?? "971545872158",
     /** Only publish a verified, licensed office address. */
     address: undefined as
       | undefined

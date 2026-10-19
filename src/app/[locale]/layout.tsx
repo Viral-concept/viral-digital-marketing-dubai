@@ -37,8 +37,8 @@ export function generateStaticParams() {
 export const dynamicParams = false;
 
 export const viewport: Viewport = {
-  themeColor: "#0c111c",
-  colorScheme: "dark",
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
@@ -89,7 +89,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           {children}
         </main>
         <Footer locale={locale} dict={dict} />
-        <WhatsAppButton label={dict.common.whatsapp} />
+        <WhatsAppButton label={dict.common.whatsapp} message={dict.common.whatsappMessage} />
         <RevealObserver />
         <Analytics />
       </body>

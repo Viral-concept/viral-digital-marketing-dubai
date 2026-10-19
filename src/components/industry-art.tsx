@@ -56,7 +56,7 @@ export function IndustryArt({ motif, hue, seed, className = "", animated = false
           <stop offset="100%" stopColor={stroke} stopOpacity="0.1" />
         </linearGradient>
       </defs>
-      <rect width="400" height="300" fill="#131a28" />
+      <rect width="400" height="300" fill="#160f35" />
       <rect width="400" height="300" fill={`url(#${id}-glow)`} />
 
       {motif === "grid" ? <GridMotif pool={pool} stroke={stroke} soft={soft} faint={faint} animated={animated} /> : null}

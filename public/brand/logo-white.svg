@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" fill="none">
+  <defs>
+    <linearGradient id="vdl-g" x1="4" y1="44" x2="44" y2="4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F2BFF"/>
+      <stop offset="0.55" stop-color="#B51FE0"/>
+      <stop offset="1" stop-color="#FF3D7F"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="14" fill="url(#vdl-g)"/>
+  <path d="M10.5 15 19.5 34.5 28.5 15" stroke="#fff" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="34.5" cy="13.5" r="3" fill="#fff"/>
+  <path d="M34.5 7.5a6 6 0 0 1 6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".85"/>
+  <path d="M34.5 3.5a10 10 0 0 1 10 10" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".5"/>
+  <text x="60" y="27" font-family="Inter Tight, Inter, Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="-0.6" fill="#FFFFFF">Viral</text>
+  <text x="61" y="42" font-family="Inter Tight, Inter, Arial, sans-serif" font-size="10.5" font-weight="600" letter-spacing="2.6" fill="#C9B8FF">DIGITAL LABS</text>
+</svg>

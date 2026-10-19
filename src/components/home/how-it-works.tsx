@@ -3,7 +3,7 @@ import type { Dictionary } from "@/i18n/dictionaries/en";
 import { href, routes } from "@/lib/routes";
 import { Button, SectionIntro } from "../ui";
 
-const accents = ["#a3361a", "#3457b8", "#0f6b5c", "#0c111c"];
+const accents = ["#b9a6ff", "#ff8fc1", "#5fe0c6", "#ffffff"];
 
 /** Client-facing engagement in four stages. A rule draws across the steps in reading order. */
 export function HowItWorks({ locale, dict }: { locale: Locale; dict: Dictionary }) {

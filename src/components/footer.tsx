@@ -133,7 +133,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
       {/* Oversized wordmark as a quiet closing gesture. Rendered via CSS content: purely decorative. */}
       <div
         aria-hidden="true"
-        data-wordmark={site.brand.name[locale]}
+        data-wordmark={site.brand.short[locale]}
         className="pointer-events-none select-none px-[var(--gutter)] pb-4 text-center text-[22vw] font-semibold leading-[0.8] tracking-[-0.06em] text-ink-3 before:content-[attr(data-wordmark)]"
       />
     </footer>
